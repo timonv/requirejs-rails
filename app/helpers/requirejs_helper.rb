@@ -60,12 +60,12 @@ module RequirejsHelper
 
         run_config['baseUrl'] = baseUrl(name)
         html.concat <<-HTML
-        <script>var require = #{run_config.to_json};</script>
+        <script type='text/javascript'>var require = #{run_config.to_json};</script>
         HTML
       end
 
       html.concat <<-HTML
-      <script #{_requirejs_data(name, &block)} src="#{_javascript_path 'require.js'}"></script>
+      <script #{_requirejs_data(name, &block)} src="#{_javascript_path 'require.js'}" type="text/javascript"></script>
       HTML
 
       html.html_safe
@@ -84,7 +84,7 @@ module RequirejsHelper
   end
 
   def _almond_include_tag(name, &block)
-    "<script src='#{_javascript_path name}'></script>\n".html_safe
+    "<script src='#{_javascript_path name}' type='text/javascript'></script>\n".html_safe
   end
 
   def _javascript_path(name)
